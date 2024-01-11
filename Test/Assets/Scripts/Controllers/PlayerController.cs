@@ -32,24 +32,56 @@ public class PlayerController : MonoBehaviour
         _boxCollider2d = transform.GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-
     private void FixedUpdate()
     {
         if (IsGrounded())
         {
             _isGrounded = true;
+            animator.SetBool("IsGrounded",true);
+            animator.SetBool("IsJumping", false);
         }
         else
         {
             _isGrounded = false;
-
+            animator.SetBool("IsGrounded",false);
         }
 
-        Vector3 targetVelocity = new Vector2(_horizontalMovement * 10f, _rigidbody2d.velocity.y);
+        if (_rigidbody2d.velocity.y < 0)
+        {
+            animator.SetBool("IsFalling", true);
+        }
+        else
+        {
+            animator.SetBool("IsFalling", false);
+        }
+
+        Vector3 targetVelocity = new Vector2(_horizontalMovement , _rigidbody2d.velocity.y);
         _rigidbody2d.velocity = targetVelocity;
         //_rigidbody2d.velocity = Vector2.SmoothDamp(_rigidbody2d.velocity, targetVelocity, ref _velocity, m_MovementSmoothing);
 
+
+        
+
+        if (_isGrounded && _isPlayerJumped)
+        {
+            _isGrounded = false;
+            _isPlayerJumped = false;
+
+            _rigidbody2d.AddForce(new Vector2(0f, _jumpVelocity));
+        }
+
+    }
+    void Update()
+    {
+        _horizontalMovement = Input.GetAxis("Horizontal")*_moveSpeed;
+        if (_horizontalMovement==0f)
+        {
+            animator.SetBool("IsMoving", false);
+        }
+        else
+        {
+            animator.SetBool("IsMoving", true);
+        }
 
         if (_horizontalMovement > 0 && !_isFacingRight)
         {
@@ -60,24 +92,14 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
 
-        if (_isGrounded && _isPlayerJumped)
-        {
-            _isGrounded = false;
-            _isPlayerJumped = false;
-            _rigidbody2d.AddForce(new Vector2(0f, _jumpVelocity));
-        }
-
-    }
-    void Update()
-    {
-        _horizontalMovement = Input.GetAxis("Horizontal")*_moveSpeed;
-
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-
             if (_isGrounded)
             {
                 _isPlayerJumped = true;
+                animator.SetBool("IsJumping", true);
+                animator.SetTrigger("Jumped");
+
             }
         }
 
@@ -87,9 +109,10 @@ public class PlayerController : MonoBehaviour
     private void Flip()
     {
         _isFacingRight = !_isFacingRight;
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = transform.localScale;
+        transform.Rotate(0f, 180f, 0f);
+        //Vector3 theScale = transform.localScale;
+        //theScale.x *= -1;
+        //transform.localScale = transform.localScale;
     }
 
     private bool IsGrounded()
