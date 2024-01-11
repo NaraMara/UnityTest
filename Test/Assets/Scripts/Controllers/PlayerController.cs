@@ -19,8 +19,15 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] private float m_MovementSmoothing = .05f;
-    [SerializeField] const float _groundedRadius = .001f;
+    [SerializeField] const float _groundedRadius = .001f;//¬озможно стоит заметить на пр€моугольник
     private float _horizontalMovement = .0f;
+
+
+    [SerializeField] private float _attackCooldown = 3.0f;
+    [SerializeField] private float _nextAttackTime= 0.0f;//костыль, чтобы при старте можно было сразу атаковать 
+    [SerializeField] private float _secondAttackWindow = 2.0f;
+
+
     private Vector2 _velocity = Vector2.zero;
 
     private Rigidbody2D _rigidbody2d;
@@ -73,8 +80,15 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        _horizontalMovement = Input.GetAxis("Horizontal")*_moveSpeed;
-        if (_horizontalMovement==0f)
+        HandleMovement();
+        HandleAttack();
+
+
+    }
+    private void HandleMovement()
+    {
+        _horizontalMovement = Input.GetAxis("Horizontal") * _moveSpeed;
+        if (_horizontalMovement == 0f)
         {
             animator.SetBool("IsMoving", false);
         }
@@ -102,10 +116,33 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-
-            
     }
    
+    private void HandleAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.Z)){
+             
+            if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))//attack combo
+            {
+                CheckAttackHitbox();
+                animator.SetTrigger("Attack2");
+                _nextAttackTime = Time.time+_attackCooldown;
+
+            }
+            else if (_nextAttackTime<Time.time)//just attack 
+            {
+                CheckAttackHitbox();
+                animator.SetTrigger("Attack1");
+                _nextAttackTime = Time.time + _attackCooldown;
+            }
+
+            
+        }
+    }
+    private void CheckAttackHitbox()
+    {
+
+    }
     private void Flip()
     {
         _isFacingRight = !_isFacingRight;
