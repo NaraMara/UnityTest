@@ -22,10 +22,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] const float _groundedRadius = .001f;//¬озможно стоит заметить на пр€моугольник
     private float _horizontalMovement = .0f;
 
-
     [SerializeField] private float _attackCooldown = 3.0f;
-    [SerializeField] private float _nextAttackTime= 0.0f;//костыль, чтобы при старте можно было сразу атаковать 
-    [SerializeField] private float _secondAttackWindow = 2.0f;
+    [SerializeField] private float _nextAttackTime= 0.0f;
+    public Transform AttackPoint;
+    [SerializeField] private float _attackRange= 3.0f;
+    [SerializeField] private LayerMask _enemyLayer;
+
+
 
 
     private Vector2 _velocity = Vector2.zero;
@@ -124,14 +127,14 @@ public class PlayerController : MonoBehaviour
              
             if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"))//attack combo
             {
-                CheckAttackHitbox();
+                CheckAttack();
                 animator.SetTrigger("Attack2");
                 _nextAttackTime = Time.time+_attackCooldown;
 
             }
             else if (_nextAttackTime<Time.time)//just attack 
             {
-                CheckAttackHitbox();
+                CheckAttack();
                 animator.SetTrigger("Attack1");
                 _nextAttackTime = Time.time + _attackCooldown;
             }
@@ -139,7 +142,7 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-    private void CheckAttackHitbox()
+    private void CheckAttack()
     {
 
     }
