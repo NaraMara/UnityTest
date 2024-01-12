@@ -150,6 +150,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (var item in hits)
         {
+            //handle attack 
             Debug.Log(item.name + "was hit");
         }
 
