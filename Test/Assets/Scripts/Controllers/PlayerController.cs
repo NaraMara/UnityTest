@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     public Animator animator;
     public Transform RespawnPoint;
+    public AudioManager audioManager;
 
     [SerializeField] private LayerMask _groundlayerMask;
     [SerializeField] private Transform _groundCheck;
@@ -116,6 +117,7 @@ public class PlayerController : MonoBehaviour
                 _isPlayerJumped = true;
                 animator.SetBool("IsJumping", true);
                 animator.SetTrigger("Jumped");
+                audioManager.Play("Jump");
 
             }
         }
@@ -144,6 +146,12 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckAttack()
     {
+        var hits = Physics2D.OverlapCircleAll(AttackPoint.position, _attackRange, _enemyLayer);
+
+        foreach (var item in hits)
+        {
+            Debug.Log(item.name + "was hit");
+        }
 
     }
     private void Flip()

@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="flex-grow: 1; justify-content: space-between;">
+        <ui:VisualElement name="Header" style="flex-grow: 1; justify-content: center; align-self: auto; height: auto; width: auto; max-height: 15%; align-items: center; flex-direction: column-reverse; position: relative; min-height: 15%;">
+            <ui:VisualElement name="Coin" style="flex-grow: 1; background-image: url(&apos;project://database/Assets/2DRPK/Sprites/coin-animation.png?fileID=8980438598086963491&amp;guid=ede4b03d4049f481a80ce6756418b385&amp;type=3#coin-animation_0&apos;); -unity-background-scale-mode: scale-to-fit; align-self: flex-end; align-items: flex-start; justify-content: flex-start; height: 32px; width: 32px; max-width: 32px; max-height: 32px; flex-direction: row; position: absolute; top: auto; left: auto; right: 2%;" />
+            <ui:VisualElement name="CoinTextContainer" style="flex-grow: 1; justify-content: center; min-height: 32px; max-height: 32px; min-width: 32px; align-self: flex-end; right: 5%; align-items: center; position: absolute;">
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="CoinCounterLabel" enable-rich-text="false" style="white-space: nowrap; align-self: flex-end; top: auto; bottom: auto; position: relative; left: auto; right: auto; max-width: none; max-height: none; -unity-font: none; -unity-font-style: normal; -unity-text-align: middle-center; min-width: 32px; min-height: 32px; justify-content: center; align-items: center; padding-left: 4px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
