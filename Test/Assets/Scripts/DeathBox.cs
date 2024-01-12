@@ -10,7 +10,7 @@ public class DeathBox : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             Debug.Log("Player died");
-            collision.gameObject.transform.position = RespawnPoint.position;
+            FindFirstObjectByType<PlayerController>().Respawn();
         }
 
     }

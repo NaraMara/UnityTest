@@ -12,8 +12,6 @@ public class CoinScript : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().Play(ClipName);
             FindObjectOfType<HUD>().AddCoin();
-
-            //incr coin counter
             Destroy(gameObject);
         }
         

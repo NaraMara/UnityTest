@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float _attackCooldown = 3.0f;
     [SerializeField] private float _nextAttackTime= 0.0f;
-    public Transform AttackPoint;
     [SerializeField] private float _attackRange= 3.0f;
     [SerializeField] private LayerMask _enemyLayer;
+    private Transform _attackPoint;
 
 
 
@@ -41,6 +41,32 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody2d = transform.GetComponent<Rigidbody2D>();
         _boxCollider2d = transform.GetComponent<BoxCollider2D>();
+        audioManager = FindFirstObjectByType<AudioManager>();
+        if(audioManager is null)
+        {
+            Debug.LogError("Can't find audio manager");
+        }
+        _attackPoint =transform.Find("AttackPoint");
+        if (_attackPoint is null)
+        {
+            Debug.LogError("Can't find attack point");
+        }
+        _groundCheck = transform.Find("GroundChecker");
+        if (_groundCheck is null)
+        {
+            Debug.LogError("Can't find ground checker");
+        }
+
+    }
+    void Update()
+    {
+        HandleMovement();
+        HandleAttack();
+    }
+    public void Respawn()
+    {
+        gameObject.transform.position = RespawnPoint.position;
+
     }
 
     private void FixedUpdate()
@@ -82,13 +108,7 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void Update()
-    {
-        HandleMovement();
-        HandleAttack();
-
-
-    }
+    
     private void HandleMovement()
     {
         _horizontalMovement = Input.GetAxis("Horizontal") * _moveSpeed;
@@ -146,7 +166,7 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckAttack()
     {
-        var hits = Physics2D.OverlapCircleAll(AttackPoint.position, _attackRange, _enemyLayer);
+        var hits = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
 
         foreach (var item in hits)
         {
