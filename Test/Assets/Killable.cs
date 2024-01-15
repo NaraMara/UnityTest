@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Killable : MonoBehaviour
 {
-    private int health = 1;
+    [SerializeField] private int health = 1;
     public virtual void Kill()
     {
         Destroy(gameObject);
