@@ -20,13 +20,15 @@ public class PlayerController : MonoBehaviour
 
 
     [SerializeField] private float m_MovementSmoothing = .05f;
-    [SerializeField]  float _groundedRadius = 0.5f;//Возможно стоит заметить на прямоугольник
+    [SerializeField] float _groundedRadius = 0.5f;//Возможно стоит заметить на прямоугольник
     private float _horizontalMovement = .0f;
 
     [SerializeField] private float _attackCooldown = 3.0f;
-    [SerializeField] private float _nextAttackTime= 0.0f;
-    [SerializeField] private float _attackRange= 3.0f;
-    [SerializeField] private LayerMask _enemyLayer;
+    [SerializeField] private float _nextAttackTime = 0.0f;
+    [SerializeField] private float _attackRange = 5.0f;
+    [SerializeField] private int _attackDamage = 69;
+
+    [SerializeField] private LayerMask _attackLayers;
     private Transform _attackPoint;
 
 
@@ -56,6 +58,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.LogError("Can't find ground checker");
         }
+        RespawnPoint = GameObject.Find("RespawnPoint").GetComponent<Transform>();
+        if (RespawnPoint is null)
+        {
+            Debug.LogError("Can't find audio manager");
+        }
 
     }
     void Update()
@@ -66,7 +73,6 @@ public class PlayerController : MonoBehaviour
     public void Respawn()
     {
         gameObject.transform.position = RespawnPoint.position;
-
     }
 
     private void FixedUpdate()
@@ -166,14 +172,15 @@ public class PlayerController : MonoBehaviour
     }
     private void CheckAttack()
     {
-        var hits = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _enemyLayer);
+        var hits = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _attackLayers);
+        Debug.Log(hits.Length);
 
         foreach (var item in hits)
         {
-            //handle attack 
-            Debug.Log(item.name + "was hit");
-        }
+            Debug.Log(item.name);
+            item.GetComponent<Killable>().TakeDagage(_attackDamage);
 
+        }
     }
     private void Flip()
     {
