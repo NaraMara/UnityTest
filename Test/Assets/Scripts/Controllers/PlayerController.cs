@@ -16,11 +16,11 @@ public class PlayerController : MonoBehaviour
 
     private bool _isFacingRight = true;
     private bool _isPlayerJumped = false;
-    private bool _isGrounded = false;
+    [SerializeField] private bool _isGrounded = false;
 
 
     [SerializeField] private float m_MovementSmoothing = .05f;
-    [SerializeField] const float _groundedRadius = .001f;//Возможно стоит заметить на прямоугольник
+    [SerializeField]  float _groundedRadius = 0.5f;//Возможно стоит заметить на прямоугольник
     private float _horizontalMovement = .0f;
 
     [SerializeField] private float _attackCooldown = 3.0f;
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
 
         if (_rigidbody2d.velocity.y < 0)
         {
-            animator.SetBool("IsFalling", true);
+            if(!_isGrounded) animator.SetBool("IsFalling", true);
         }
         else
         {
