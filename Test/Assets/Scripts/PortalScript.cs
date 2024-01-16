@@ -14,10 +14,10 @@ public class PortalScript : MonoBehaviour
     {
         if (_isInRange)
         {
-            Debug.Log("He's here");
             if (Input.GetKeyDown(KeyCode.C))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                //some load animation
+                StartCoroutine(LoadNextSceneAsync());
             }
         }
     }
@@ -34,6 +34,15 @@ public class PortalScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             _isInRange = false;
+        }
+    }
+    IEnumerator LoadNextSceneAsync()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
         }
     }
 }
