@@ -2765,10 +2765,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1208336267565517526, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.486
-      objectReference: {fileID: 0}
     - target: {fileID: 3325946490726922958, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2813,38 +2809,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6158299428387592440, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.006
-      objectReference: {fileID: 0}
-    - target: {fileID: 6158299428387592440, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.241
-      objectReference: {fileID: 0}
     - target: {fileID: 8334453353629269071, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: _attackRange
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: RespawnPoint
+      value: 
+      objectReference: {fileID: 813928596}
     - target: {fileID: 8334453353629269071, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
       propertyPath: audioManager
       value: 
       objectReference: {fileID: 1977526576}
-    - target: {fileID: 8334453353629269071, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: _attackCooldown
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8334453353629269071, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: _groundedRadius
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8334453353629269071, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: _enemyLayer.m_Bits
-      value: 384
-      objectReference: {fileID: 0}
-    - target: {fileID: 8334453353629269071, guid: 7104fa3900d01174987736b02d8af77b, type: 3}
-      propertyPath: _attackLayers.m_Bits
-      value: 384
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
