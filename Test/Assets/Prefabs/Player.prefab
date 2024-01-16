@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 744983678772836095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.255, y: 0, z: 0}
+  m_LocalPosition: {x: 0.486, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 3325946490726922958}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.06, y: -0.46, z: 0}
+  m_LocalPosition: {x: 1.38, y: 0.01, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -181,25 +181,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 766b1e1451c0c5146a2b136387c5bbb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpVelocity: 400
-  _moveSpeed: 5
   animator: {fileID: 1504005081185872739}
   RespawnPoint: {fileID: 0}
   audioManager: {fileID: 0}
+  _jumpVelocity: 400
+  _moveSpeed: 5
   _groundlayerMask:
     serializedVersion: 2
     m_Bits: 64
   _groundCheck: {fileID: 6158299428387592440}
-  _isGrounded: 0
-  m_MovementSmoothing: 1
   _groundedRadius: 0.2
-  _attackCooldown: 1.5
+  _isGrounded: 0
+  _attackCooldown: 0.5
   _nextAttackTime: 0
-  _attackRange: 3
+  _attackRange: 2
   _attackDamage: 69
   _attackLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
 --- !u!70 &1998358985881711705
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -260,7 +259,7 @@ Transform:
   m_GameObject: {fileID: 6038223362743667418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: 0}
+  m_LocalPosition: {x: -0.006, y: -0.241, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2d;
 
 
-    //Movement
+    [Header("Movement")]
     [SerializeField] private float _jumpVelocity;
     [SerializeField] private float _moveSpeed;
     private float _horizontalMovement = .0f;
 
-    //Ground checks
+    [Header("Ground checks")]
     [SerializeField] private LayerMask _groundlayerMask;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] float _groundedRadius = 0.5f;//Возможно стоит заметить на прямоугольник
@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
     //Flags
     private bool _isFacingRight = true;
     private bool _isPlayerJumped = false;
-    [SerializeField] private bool _isGrounded = false;
+    private bool _isGrounded = false;
 
-    //Combat
+    [Header("Combat")]
     [SerializeField] private float _attackCooldown = 3.0f;
     [SerializeField] private float _nextAttackTime = 0.0f;
     [SerializeField] private float _attackRange = 5.0f;
