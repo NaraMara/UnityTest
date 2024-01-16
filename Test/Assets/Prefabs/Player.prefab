@@ -192,11 +192,12 @@ MonoBehaviour:
   _groundCheck: {fileID: 6158299428387592440}
   _isGrounded: 0
   m_MovementSmoothing: 1
-  _groundedRadius: 0.5
+  _groundedRadius: 0.2
   _attackCooldown: 1.5
   _nextAttackTime: 0
   _attackRange: 3
-  _enemyLayer:
+  _attackDamage: 69
+  _attackLayers:
     serializedVersion: 2
     m_Bits: 0
 --- !u!70 &1998358985881711705

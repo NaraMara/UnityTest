@@ -43,5 +43,8 @@ public class DeathScript : MonoBehaviour
         gameObject.transform.position = RespawnPoint.position;
     }
 
-
+    public void Kill()
+    {
+        Destroy(gameObject);
+    }
 }
