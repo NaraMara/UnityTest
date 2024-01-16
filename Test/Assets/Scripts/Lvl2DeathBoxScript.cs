@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Lvl2DeathBoxScript : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject Death;
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            Player.GetComponent<PlayerController>().Respawn();
-            Death.GetComponent<DeathScript>().Respawn();
+           FindAnyObjectByType<PlayerController>().Respawn();
+           var death= FindAnyObjectByType<DeathScript>();
+            if (death is not null)
+            {
+                death.Respawn();
+            }
         }
     }
 }

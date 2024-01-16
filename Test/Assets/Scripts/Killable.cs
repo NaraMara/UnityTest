@@ -13,7 +13,6 @@ public class Killable : MonoBehaviour
     {
         if (health - damage < 0)
         {
-            //flashy animation and sound
             Kill();
         }
         else

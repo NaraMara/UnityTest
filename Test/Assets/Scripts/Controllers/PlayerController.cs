@@ -162,7 +162,6 @@ public class PlayerController : MonoBehaviour
     private void CheckAttack()
     {
         var hits = Physics2D.OverlapCircleAll(_attackPoint.position, _attackRange, _attackLayers);
-        Debug.Log(hits.Length);
 
         foreach (var item in hits)
         {
